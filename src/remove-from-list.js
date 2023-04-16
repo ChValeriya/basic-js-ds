@@ -38,21 +38,24 @@ function getPosition(l, k) {
 
 function removeKFromList(l, k) {
   let positionsArr = getPosition(l, k);
-  console.log(positionsArr)
+  let index = 0;
+
   for (let position of positionsArr) {
+    let list = l;
+
     if (position === 0) {
       l = l.next
+      index++
     } else {
       let prev = null;
-      let index = 0;
-  
+      
       while (index < position) {
-        let list = l;
         prev = list;
         list = list.next;
         index++;
       }
-        prev.next.next = prev.next.next.next;
+        prev.next = prev.next.next;
+        index--;
     }
   }
   return l
